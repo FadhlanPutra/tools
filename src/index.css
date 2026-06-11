@@ -2,6 +2,10 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+.no-transition * {
+  transition: none !important;
+}
+
 :root {
   --bg: #ffffff;
   --bg-secondary: #f8f9fb;

@@ -1,6 +1,29 @@
 import { useState } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import CopyButton from '../components/CopyButton'
+import ToolInfo, { type Section } from '../components/ToolInfo'
+
+const SECTIONS: Section[] = [
+  {
+    title: 'Apa itu JSON?',
+    content: 'JSON (JavaScript Object Notation) adalah format pertukaran data yang ringan dan mudah dibaca serta ditulis oleh manusia, serta mudah diproses dan dihasilkan oleh mesin.'
+  },
+  {
+    title: 'Beautify vs Minify',
+    content: [
+      'Beautify: Menambahkan indentasi dan spasi agar JSON mudah dibaca oleh manusia.',
+      'Minify: Menghapus spasi, baris baru, dan indentasi untuk mengurangi ukuran file JSON, biasanya digunakan untuk pengiriman data antar server.'
+    ]
+  },
+  {
+    title: 'Tips Validasi',
+    content: [
+      'Pastikan semua kunci (key) dibungkus dengan tanda kutip ganda (").',
+      'Hindari penggunaan koma di akhir item terakhir dalam objek atau array.',
+      'Periksa apakah tanda kurung kurawal {} atau siku [] sudah tertutup dengan benar.'
+    ]
+  }
+]
 
 export default function JsonFormatter() {
   const [input, setInput] = useState('')
@@ -87,6 +110,8 @@ export default function JsonFormatter() {
             </pre>
           </div>
         )}
+
+        <ToolInfo sections={SECTIONS} />
       </div>
     </ToolLayout>
   )

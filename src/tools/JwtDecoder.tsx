@@ -1,6 +1,15 @@
 import { useState } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import CopyButton from '../components/CopyButton'
+import ToolInfo, { type Section } from '../components/ToolInfo'
+
+const SECTIONS: Section[] = [
+  { title: 'Apa itu JWT?', content: 'JSON Web Token (JWT) adalah standar terbuka untuk membuat token akses yang aman di antara dua pihak.' },
+  { title: 'Keamanan', content: [
+    'JWT yang didekode di sini hanya menampilkan data yang sudah dipublikasikan.',
+    'Jangan menyimpan data sensitif di dalam payload JWT karena siapa saja bisa membacanya tanpa secret key.'
+  ]}
+]
 
 function decodeJWT(token: string) {
   const parts = token.trim().split('.')
@@ -100,6 +109,7 @@ export default function JwtDecoder() {
             </div>
           </div>
         )}
+        <ToolInfo sections={SECTIONS} />
       </div>
     </ToolLayout>
   )

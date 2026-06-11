@@ -8,6 +8,20 @@
     <meta name="description" content="Kumpulan developer tools gratis: JSON Formatter, UUID Generator, Password Generator, Base64, JWT Decoder, dan banyak lagi. Semua berjalan di browser." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script>
+      (function() {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark' || (!theme || theme === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.classList.add('dark');
+        }
+        document.documentElement.classList.add('no-transition');
+        window.addEventListener('load', function() {
+          setTimeout(function() {
+            document.documentElement.classList.remove('no-transition');
+          }, 500);
+        });
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

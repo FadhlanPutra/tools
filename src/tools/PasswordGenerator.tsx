@@ -1,6 +1,15 @@
 import { useState } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import CopyButton from '../components/CopyButton'
+import ToolInfo, { type Section } from '../components/ToolInfo'
+
+const SECTIONS: Section[] = [
+  { title: 'Tips Keamanan', content: [
+    'Gunakan panjang minimal 12 karakter.',
+    'Kombinasikan huruf besar, huruf kecil, angka, dan simbol.',
+    'Jangan gunakan password yang sama untuk layanan yang berbeda.'
+  ]}
+]
 
 const CHARS = {
   lower: 'abcdefghijklmnopqrstuvwxyz',
@@ -106,6 +115,7 @@ export default function PasswordGenerator() {
         >
           Generate New Password
         </button>
+        <ToolInfo sections={SECTIONS} />
       </div>
     </ToolLayout>
   )

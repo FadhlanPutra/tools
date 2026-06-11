@@ -1,6 +1,11 @@
 import { useState } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import CopyButton from '../components/CopyButton'
+import ToolInfo, { type Section } from '../components/ToolInfo'
+
+const SECTIONS: Section[] = [
+  { title: 'Apa itu UUID?', content: 'UUID (Universally Unique Identifier) adalah label 128-bit yang digunakan untuk mengidentifikasi informasi dalam sistem komputer dengan keunikan yang sangat tinggi.' }
+]
 
 function generateUUID(): string {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
@@ -67,6 +72,7 @@ export default function UuidGenerator() {
             </div>
           ))}
         </div>
+        <ToolInfo sections={SECTIONS} />
       </div>
     </ToolLayout>
   )

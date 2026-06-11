@@ -1,6 +1,12 @@
 import { useState } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import CopyButton from '../components/CopyButton'
+import ToolInfo, { type Section } from '../components/ToolInfo'
+
+const SECTIONS: Section[] = [
+  { title: 'Apa itu Base64?', content: 'Base64 adalah metode untuk mengubah data biner ke format teks ASCII agar data dapat dikirim dengan aman melalui media yang hanya mendukung teks.' },
+  { title: 'Keamanan', content: 'Base64 bukan enkripsi. Jangan menggunakannya untuk menyembunyikan data sensitif karena siapa saja dapat melakukan dekode dengan mudah.' }
+]
 
 export default function Base64Tool() {
   const [input, setInput] = useState('')
@@ -93,6 +99,7 @@ export default function Base64Tool() {
             </pre>
           </div>
         )}
+        <ToolInfo sections={SECTIONS} />
       </div>
     </ToolLayout>
   )

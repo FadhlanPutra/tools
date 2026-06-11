@@ -1,6 +1,11 @@
 import { useState } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import CopyButton from '../components/CopyButton'
+import ToolInfo, { type Section } from '../components/ToolInfo'
+
+const SECTIONS: Section[] = [
+  { title: 'Apa itu Unix Timestamp?', content: 'Unix timestamp adalah jumlah detik yang telah berlalu sejak 1 Januari 1970 (UTC).' }
+]
 
 export default function TimestampConverter() {
   const [tsInput, setTsInput] = useState('')
@@ -119,6 +124,7 @@ export default function TimestampConverter() {
             </div>
           )}
         </div>
+        <ToolInfo sections={SECTIONS} />
       </div>
     </ToolLayout>
   )

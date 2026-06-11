@@ -9,11 +9,11 @@ interface ToolLayoutProps {
 
 export default function ToolLayout({ title, description, children }: ToolLayoutProps) {
   return (
-    <main className="max-w-3xl mx-auto px-4 py-10">
+    <main className="max-w-3xl mx-auto px-4 py-10 animate-in fade-in duration-500">
       <Link
         to="/tools"
         style={{ color: 'var(--text-muted)' }}
-        className="inline-flex items-center gap-1.5 text-sm mb-6 hover:opacity-80 transition-opacity"
+        className="inline-flex items-center gap-1.5 text-sm mb-6 hover:opacity-80 transition-opacity hover:translate-x-[-4px]"
       >
         <ArrowLeft size={14} />
         All Tools

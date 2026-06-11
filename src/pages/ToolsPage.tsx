@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { ChevronDown, Search, Menu, X, ArrowRight } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 import ToolCard from '../components/ToolCard'
 import { TOOLS, CATEGORIES } from '../lib/tools'
 import type { Category } from '../lib/tools'
@@ -116,7 +117,7 @@ function Sidebar({ active, onChange, open, onClose }: {
   onClose: () => void
 }) {
   const [expanded, setExpanded] = useState<Record<string, boolean>>(
-    Object.keys(CATEGORIES).reduce((a, k) => ({ ...a, [k]: true }), {})
+    Object.keys(CATEGORIES).reduce((a, k) => ({ ...a, [k]: false }), {})
   )
 
   function toggle(cat: string) {
@@ -162,25 +163,32 @@ function Sidebar({ active, onChange, open, onClose }: {
             />
           </button>
 
-          {expanded[cat] && (
-            <div className="ml-2 flex flex-col gap-0.5">
-              {GROUPED[cat].map((tool) => (
-                <Link
-                  key={tool.id}
-                  to={tool.path}
-                  onClick={onClose}
-                  style={{ color: 'var(--text-muted)' }}
-                  className="flex items-center gap-2 text-sm px-3 py-1.5 rounded-lg hover:bg-[var(--bg-secondary)] hover:text-[var(--text)] transition-colors group"
-                >
-                  <span
-                    style={{ background: 'var(--border)' }}
-                    className="w-1 h-1 rounded-full shrink-0 group-hover:bg-[var(--accent)] transition-colors"
-                  />
-                  {tool.name}
-                </Link>
-              ))}
-            </div>
-          )}
+          <AnimatePresence>
+            {expanded[cat] && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="ml-2 flex flex-col gap-0.5 overflow-hidden"
+              >
+                {GROUPED[cat].map((tool) => (
+                  <Link
+                    key={tool.id}
+                    to={tool.path}
+                    onClick={onClose}
+                    style={{ color: 'var(--text-muted)' }}
+                    className="flex items-center gap-2 text-sm px-3 py-1.5 rounded-lg hover:bg-[var(--bg-secondary)] hover:text-[var(--text)] transition-colors group"
+                  >
+                    <span
+                      style={{ background: 'var(--border)' }}
+                      className="w-1 h-1 rounded-full shrink-0 group-hover:bg-[var(--accent)] transition-colors"
+                    />
+                    {tool.name}
+                  </Link>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       ))}
     </nav>
@@ -197,30 +205,40 @@ function Sidebar({ active, onChange, open, onClose }: {
       </aside>
 
       {/* Mobile overlay */}
-      {open && (
-        <div
-          className="fixed inset-0 z-40 md:hidden"
-          style={{ background: 'rgba(0,0,0,0.5)' }}
-          onClick={onClose}
-        >
-          <aside
-            style={{ background: 'var(--bg)', borderRight: '1px solid var(--border)', width: 260, height: '100%' }}
-            className="overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 md:hidden"
+            style={{ background: 'rgba(0,0,0,0.5)' }}
+            onClick={onClose}
           >
-            <div
-              style={{ borderBottom: '1px solid var(--border)' }}
-              className="flex items-center justify-between px-4 py-3"
+            <motion.aside
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              style={{ background: 'var(--bg)', borderRight: '1px solid var(--border)', width: 260, height: '100%' }}
+              className="overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
             >
-              <span style={{ color: 'var(--text)' }} className="text-sm font-semibold">Menu</span>
-              <button onClick={onClose} style={{ color: 'var(--text-muted)' }}>
-                <X size={18} />
-              </button>
-            </div>
-            {content}
-          </aside>
-        </div>
-      )}
+              <div
+                style={{ borderBottom: '1px solid var(--border)' }}
+                className="flex items-center justify-between px-4 py-3"
+              >
+                <span style={{ color: 'var(--text)' }} className="text-sm font-semibold">Menu</span>
+                <button onClick={onClose} style={{ color: 'var(--text-muted)' }}>
+                  <X size={18} />
+                </button>
+              </div>
+              {content}
+            </motion.aside>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }

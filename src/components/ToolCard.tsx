@@ -10,7 +10,7 @@ export default function ToolCard({ tool }: { tool: Tool }) {
         border: '1px solid var(--border)',
         color: 'var(--text)',
       }}
-      className="group block rounded-xl p-5 transition-all hover:border-blue-500/50 hover:shadow-md"
+      className="group block rounded-xl p-5 transition-all hover:border-blue-500/50 hover:shadow-md hover:scale-[1.02] active:scale-[0.98]"
     >
       <div className="flex items-start gap-3">
         <span className="text-2xl select-none">{tool.icon}</span>

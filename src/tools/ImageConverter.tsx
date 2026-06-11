@@ -1,58 +1,114 @@
 import { useState, useRef } from 'react'
+import JSZip from 'jszip'
+import { saveAs } from 'file-saver'
 import ToolLayout from '../components/ToolLayout'
-import CopyButton from '../components/CopyButton'
+import ToolInfo, { type Section } from '../components/ToolInfo'
+
+const SECTIONS: Section[] = [
+  { title: 'Bagaimana cara kerjanya?', content: 'Tool ini memproses gambar secara lokal langsung di browser Anda menggunakan Canvas API.' },
+  { title: 'Privasi', content: 'Semua pemrosesan dilakukan di perangkat Anda sendiri. Data gambar tidak pernah diunggah ke server.' }
+]
+
+interface ImageFile {
+  id: string
+  file: File
+  preview: string
+}
 
 export default function ImageConverter() {
-  const [image, setImage] = useState<string | null>(null)
+  const [images, setImages] = useState<ImageFile[]>([])
   const [format, setFormat] = useState('image/png')
-  const [filename, setFilename] = useState('converted-image')
+  const [isDragging, setIsDragging] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0]
-    if (file) {
-      setFilename(file.name.split('.')[0])
-      const reader = new FileReader()
-      reader.onload = (e) => setImage(e.target?.result as string)
-      reader.readAsDataURL(file)
-    }
+  function handleFiles(files: FileList | null) {
+    if (!files) return
+    const newImages: ImageFile[] = []
+    Array.from(files).forEach((file) => {
+      if (file.type.startsWith('image/')) {
+        newImages.push({
+          id: Math.random().toString(36).substring(7),
+          file,
+          preview: URL.createObjectURL(file),
+        })
+      }
+    })
+    setImages((prev) => [...prev, ...newImages])
   }
 
-  function convert() {
-    if (!image || !canvasRef.current) return
-    const img = new Image()
-    img.onload = () => {
-      const canvas = canvasRef.current!
+  function handleDrop(e: React.DragEvent) {
+    e.preventDefault()
+    setIsDragging(false)
+    handleFiles(e.dataTransfer.files)
+  }
+
+  async function convertAndDownload() {
+    if (images.length === 0 || !canvasRef.current) return
+    const zip = new JSZip()
+    const canvas = canvasRef.current
+
+    for (const imgFile of images) {
+      const img = new Image()
+      img.src = imgFile.preview
+      await new Promise((resolve) => { img.onload = resolve })
+
       canvas.width = img.width
       canvas.height = img.height
       const ctx = canvas.getContext('2d')
-      if (ctx) {
-        ctx.drawImage(img, 0, 0)
-        const dataUrl = canvas.toDataURL(format)
-        const link = document.createElement('a')
-        link.download = `${filename}.${format.split('/')[1]}`
-        link.href = dataUrl
-        link.click()
+      ctx?.drawImage(img, 0, 0)
+      
+      const blob = await new Promise<Blob | null>((resolve) => 
+        canvas.toBlob(resolve, format)
+      )
+      
+      if (blob) {
+        const ext = format.split('/')[1]
+        zip.file(`${imgFile.file.name.split('.')[0]}.${ext}`, blob)
       }
     }
-    img.src = image
+
+    const content = await zip.generateAsync({ type: 'blob' })
+    saveAs(content, 'converted-images.zip')
   }
 
   return (
     <ToolLayout
       title="Image Converter"
-      description="Ubah format gambar langsung di browser. Tanpa upload ke server."
+      description="Ubah format banyak gambar sekaligus langsung di browser."
     >
       <div className="space-y-4">
-        <input 
-          type="file" 
-          accept="image/*" 
-          onChange={handleFile}
-          className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-        />
+        <div
+          onDragOver={(e) => { e.preventDefault(); setIsDragging(true) }}
+          onDragLeave={() => setIsDragging(false)}
+          onDrop={handleDrop}
+          onClick={() => fileInputRef.current?.click()}
+          style={{ 
+            border: isDragging ? '2px dashed var(--accent)' : '2px dashed var(--border)' 
+          }}
+          className="w-full h-48 rounded-2xl flex flex-col items-center justify-center cursor-pointer transition-all bg-[var(--bg-secondary)]"
+        >
+          <p style={{ color: 'var(--text-muted)' }} className="text-sm">
+            Drag & drop gambar atau klik untuk pilih
+          </p>
+          <input 
+            type="file" 
+            ref={fileInputRef}
+            accept="image/*" 
+            multiple
+            onChange={(e) => handleFiles(e.target.files)}
+            className="hidden"
+          />
+        </div>
         
-        {image && (
-          <>
+        {images.length > 0 && (
+          <div className="space-y-4">
+            <div className="grid grid-cols-3 gap-2">
+              {images.map((img) => (
+                <img key={img.id} src={img.preview} className="h-20 w-full object-cover rounded-lg" />
+              ))}
+            </div>
+
             <div>
               <label className="text-xs block mb-1">Format Target</label>
               <select 
@@ -63,18 +119,24 @@ export default function ImageConverter() {
                 <option value="image/png">PNG</option>
                 <option value="image/jpeg">JPEG</option>
                 <option value="image/webp">WebP</option>
-                <option value="image/avif">AVIF</option>
               </select>
             </div>
             
             <button 
-              onClick={convert}
+              onClick={convertAndDownload}
               className="w-full bg-[var(--accent)] text-white py-2 rounded-lg"
             >
-              Konversi & Download
+              Konversi & Download (ZIP)
             </button>
-          </>
+            <button 
+              onClick={() => setImages([])}
+              className="w-full bg-red-500 text-white py-2 rounded-lg"
+            >
+              Hapus Semua
+            </button>
+          </div>
         )}
+        <ToolInfo sections={SECTIONS} />
       </div>
       <canvas ref={canvasRef} style={{ display: 'none' }} />
     </ToolLayout>
