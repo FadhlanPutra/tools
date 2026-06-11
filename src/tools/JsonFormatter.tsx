@@ -1,0 +1,93 @@
+import { useState } from 'react'
+import ToolLayout from '../components/ToolLayout'
+import CopyButton from '../components/CopyButton'
+
+export default function JsonFormatter() {
+  const [input, setInput] = useState('')
+  const [output, setOutput] = useState('')
+  const [error, setError] = useState('')
+
+  function beautify() {
+    try {
+      const parsed = JSON.parse(input)
+      setOutput(JSON.stringify(parsed, null, 2))
+      setError('')
+    } catch (e: any) {
+      setError(e.message)
+      setOutput('')
+    }
+  }
+
+  function minify() {
+    try {
+      const parsed = JSON.parse(input)
+      setOutput(JSON.stringify(parsed))
+      setError('')
+    } catch (e: any) {
+      setError(e.message)
+      setOutput('')
+    }
+  }
+
+  return (
+    <ToolLayout
+      title="JSON Formatter"
+      description="Beautify, minify, dan validasi JSON secara instan. Data tidak dikirim ke server."
+    >
+      <div className="space-y-4">
+        <div>
+          <label style={{ color: 'var(--text-muted)' }} className="block text-xs mb-2">
+            Input JSON
+          </label>
+          <textarea
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder={'{"name":"John","age":20}'}
+            rows={8}
+            style={{
+              background: 'var(--bg-secondary)',
+              border: `1px solid ${error ? '#ef4444' : 'var(--border)'}`,
+              color: 'var(--text)',
+              outline: 'none',
+              resize: 'vertical',
+            }}
+            className="w-full rounded-xl p-4 text-sm font-mono"
+          />
+          {error && <p className="text-red-500 text-xs mt-1">⚠ {error}</p>}
+        </div>
+
+        <div className="flex gap-2">
+          <button
+            onClick={beautify}
+            style={{ background: 'var(--accent)', color: '#fff' }}
+            className="text-sm px-4 py-2 rounded-lg"
+          >
+            Beautify
+          </button>
+          <button
+            onClick={minify}
+            style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border)', color: 'var(--text)' }}
+            className="text-sm px-4 py-2 rounded-lg"
+          >
+            Minify
+          </button>
+        </div>
+
+        {output && (
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <label style={{ color: 'var(--text-muted)' }} className="text-xs">Output</label>
+              <CopyButton text={output} />
+            </div>
+            <pre
+              style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border)', color: 'var(--text)' }}
+              className="rounded-xl p-4 text-sm font-mono overflow-auto max-h-80"
+            >
+              {output}
+            </pre>
+          </div>
+        )}
+      </div>
+    </ToolLayout>
+  )
+}
