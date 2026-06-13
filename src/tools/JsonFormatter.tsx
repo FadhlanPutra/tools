@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import ToolLayout from '../components/ToolLayout'
 import CopyButton from '../components/CopyButton'
 import ToolInfo, { type Section } from '../components/ToolInfo'
@@ -53,10 +54,15 @@ export default function JsonFormatter() {
   }
 
   return (
-    <ToolLayout
-      title="JSON Formatter"
-      description="Beautify, minify, dan validasi JSON secara instan. Data tidak dikirim ke server."
-    >
+    <>
+      <Helmet>
+        <title>JSON Formatter | build.my.id</title>
+        <meta name="description" content="Beautify, minify, dan validasi JSON secara instan. Data tidak dikirim ke server." />
+      </Helmet>
+      <ToolLayout
+        title="JSON Formatter"
+        description="Beautify, minify, dan validasi JSON secara instan. Data tidak dikirim ke server."
+      >
       <div className="space-y-4">
         <div>
           <label style={{ color: 'var(--text-muted)' }} className="block text-xs mb-2">
@@ -113,6 +119,8 @@ export default function JsonFormatter() {
 
         <ToolInfo sections={SECTIONS} />
       </div>
-    </ToolLayout>
+      </ToolLayout>
+    </>
   )
 }
+

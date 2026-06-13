@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import ToolLayout from '../components/ToolLayout'
 import CopyButton from '../components/CopyButton'
 import ToolInfo, { type Section } from '../components/ToolInfo'
@@ -30,10 +31,15 @@ export default function Base64Tool() {
   }
 
   return (
-    <ToolLayout
-      title="Base64 Encoder / Decoder"
-      description="Encode teks ke Base64 atau decode Base64 kembali ke teks. Berjalan di browser."
-    >
+    <>
+      <Helmet>
+        <title>Base64 Encoder / Decoder | build.my.id</title>
+        <meta name="description" content="Encode teks ke Base64 atau decode Base64 kembali ke teks. Berjalan di browser." />
+      </Helmet>
+      <ToolLayout
+        title="Base64 Encoder / Decoder"
+        description="Encode teks ke Base64 atau decode Base64 kembali ke teks. Berjalan di browser."
+      >
       <div className="space-y-4">
         {/* Mode toggle */}
         <div
@@ -101,6 +107,8 @@ export default function Base64Tool() {
         )}
         <ToolInfo sections={SECTIONS} />
       </div>
-    </ToolLayout>
+      </ToolLayout>
+    </>
   )
 }
+

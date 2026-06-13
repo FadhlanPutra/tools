@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import ToolLayout from '../components/ToolLayout'
 import CopyButton from '../components/CopyButton'
 import ToolInfo, { type Section } from '../components/ToolInfo'
@@ -24,10 +25,15 @@ export default function UuidGenerator() {
   }
 
   return (
-    <ToolLayout
-      title="UUID Generator"
-      description="Generate UUID v4 secara instan. Aman — semua dibuat di browser kamu."
-    >
+    <>
+      <Helmet>
+        <title>UUID Generator | build.my.id</title>
+        <meta name="description" content="Generate UUID v4 secara instan. Aman — semua dibuat di browser kamu." />
+      </Helmet>
+      <ToolLayout
+        title="UUID Generator"
+        description="Generate UUID v4 secara instan. Aman — semua dibuat di browser kamu."
+      >
       <div className="space-y-4">
         <div className="flex items-center gap-3">
           <div>
@@ -74,6 +80,8 @@ export default function UuidGenerator() {
         </div>
         <ToolInfo sections={SECTIONS} />
       </div>
-    </ToolLayout>
+      </ToolLayout>
+    </>
   )
 }
+

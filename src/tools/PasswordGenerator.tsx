@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import ToolLayout from '../components/ToolLayout'
 import CopyButton from '../components/CopyButton'
 import ToolInfo, { type Section } from '../components/ToolInfo'
@@ -42,10 +43,15 @@ export default function PasswordGenerator() {
   const strengthColor = strength === 'Strong' ? '#16a34a' : strength === 'Good' ? '#d97706' : '#ef4444'
 
   return (
-    <ToolLayout
-      title="Password Generator"
-      description="Buat password acak yang kuat. Semua diproses di browser — tidak ada yang disimpan."
-    >
+    <>
+      <Helmet>
+        <title>Password Generator | build.my.id</title>
+        <meta name="description" content="Buat password acak yang kuat. Semua diproses di browser — tidak ada yang disimpan." />
+      </Helmet>
+      <ToolLayout
+        title="Password Generator"
+        description="Buat password acak yang kuat. Semua diproses di browser — tidak ada yang disimpan."
+      >
       <div className="space-y-5">
         {/* Password output */}
         <div
@@ -117,6 +123,8 @@ export default function PasswordGenerator() {
         </button>
         <ToolInfo sections={SECTIONS} />
       </div>
-    </ToolLayout>
+      </ToolLayout>
+    </>
   )
 }
+

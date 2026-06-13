@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import ToolLayout from '../components/ToolLayout'
 import CopyButton from '../components/CopyButton'
 import ToolInfo, { type Section } from '../components/ToolInfo'
@@ -44,10 +45,15 @@ export default function JwtDecoder() {
   }
 
   return (
-    <ToolLayout
-      title="JWT Decoder"
-      description="Decode JWT token dan lihat header serta payload. Data tidak dikirim ke server — semuanya lokal."
-    >
+    <>
+      <Helmet>
+        <title>JWT Decoder | build.my.id</title>
+        <meta name="description" content="Decode JWT token dan lihat header serta payload. Data tidak dikirim ke server — semuanya lokal." />
+      </Helmet>
+      <ToolLayout
+        title="JWT Decoder"
+        description="Decode JWT token dan lihat header serta payload. Data tidak dikirim ke server — semuanya lokal."
+      >
       <div className="space-y-4">
         <div>
           <label style={{ color: 'var(--text-muted)' }} className="text-xs block mb-2">
@@ -111,6 +117,8 @@ export default function JwtDecoder() {
         )}
         <ToolInfo sections={SECTIONS} />
       </div>
-    </ToolLayout>
+      </ToolLayout>
+    </>
   )
 }
+

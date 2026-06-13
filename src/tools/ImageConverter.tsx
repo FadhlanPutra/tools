@@ -1,7 +1,9 @@
 import { useState, useRef } from 'react'
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
+import { Helmet } from 'react-helmet-async'
 import ToolLayout from '../components/ToolLayout'
+
 import ToolInfo, { type Section } from '../components/ToolInfo'
 
 const SECTIONS: Section[] = [
@@ -34,7 +36,7 @@ export default function ImageConverter() {
         })
       }
     })
-    setImages((prev) => [...prev, ...newImages])
+    setImages((prev: ImageFile[]) => [...prev, ...newImages])
   }
 
   function handleDrop(e: React.DragEvent) {
@@ -73,10 +75,15 @@ export default function ImageConverter() {
   }
 
   return (
-    <ToolLayout
-      title="Image Converter"
-      description="Ubah format banyak gambar sekaligus langsung di browser."
-    >
+    <>
+      <Helmet>
+        <title>Image Converter | build.my.id</title>
+        <meta name="description" content="Ubah format banyak gambar sekaligus langsung di browser." />
+      </Helmet>
+      <ToolLayout
+        title="Image Converter"
+        description="Ubah format banyak gambar sekaligus langsung di browser."
+      >
       <div className="space-y-4">
         <div
           onDragOver={(e) => { e.preventDefault(); setIsDragging(true) }}
@@ -104,7 +111,7 @@ export default function ImageConverter() {
         {images.length > 0 && (
           <div className="space-y-4">
             <div className="grid grid-cols-3 gap-2">
-              {images.map((img) => (
+              {images.map((img: ImageFile) => (
                 <img key={img.id} src={img.preview} className="h-20 w-full object-cover rounded-lg" />
               ))}
             </div>
@@ -139,6 +146,8 @@ export default function ImageConverter() {
         <ToolInfo sections={SECTIONS} />
       </div>
       <canvas ref={canvasRef} style={{ display: 'none' }} />
-    </ToolLayout>
+      </ToolLayout>
+    </>
   )
 }
+

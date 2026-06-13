@@ -29,6 +29,7 @@ export default function Navbar({ theme, onThemeChange }: NavbarProps) {
         </Link>
 
         <nav className="flex items-center gap-4">
+          <Link to="/privacy-policy" className="text-sm hover:text-[var(--accent)]" style={{ color: 'var(--text-muted)' }}>Privacy</Link>
           {/* Theme switcher */}
           <div
             style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border)' }}

@@ -82,4 +82,13 @@ export const TOOLS: Tool[] = [
     icon: '🖼️',
     tags: ['image', 'convert', 'png', 'jpeg', 'webp'],
   },
+  {
+    id: 'word-counter',
+    name: 'Word Counter',
+    description: 'Hitung jumlah kata, karakter, dan kalimat secara instan.',
+    category: 'utility',
+    path: '/tools/word-counter',
+    icon: '📝',
+    tags: ['word', 'character', 'count', 'text', 'utility'],
+  },
 ]

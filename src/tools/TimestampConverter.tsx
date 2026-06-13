@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import ToolLayout from '../components/ToolLayout'
 import CopyButton from '../components/CopyButton'
 import ToolInfo, { type Section } from '../components/ToolInfo'
@@ -30,10 +31,15 @@ export default function TimestampConverter() {
   }
 
   return (
-    <ToolLayout
-      title="Timestamp Converter"
-      description="Konversi Unix timestamp ke tanggal atau sebaliknya."
-    >
+    <>
+      <Helmet>
+        <title>Timestamp Converter | build.my.id</title>
+        <meta name="description" content="Konversi Unix timestamp ke tanggal atau sebaliknya." />
+      </Helmet>
+      <ToolLayout
+        title="Timestamp Converter"
+        description="Konversi Unix timestamp ke tanggal atau sebaliknya."
+      >
       <div className="space-y-8">
         {/* Current time */}
         <div
@@ -126,6 +132,8 @@ export default function TimestampConverter() {
         </div>
         <ToolInfo sections={SECTIONS} />
       </div>
-    </ToolLayout>
+      </ToolLayout>
+    </>
   )
 }
+

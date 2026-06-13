@@ -10,6 +10,9 @@ import Base64Tool from './tools/Base64Tool'
 import JwtDecoder from './tools/JwtDecoder'
 import TimestampConverter from './tools/TimestampConverter'
 import ImageConverter from './tools/ImageConverter'
+import WordCounter from './tools/WordCounter'
+import PrivacyPolicy from './pages/legal/PrivacyPolicy'
+import TermsOfService from './pages/legal/TermsOfService'
 
 export default function App() {
   const { theme, changeTheme } = useTheme()
@@ -27,6 +30,9 @@ export default function App() {
         <Route path="/tools/jwt-decoder" element={<JwtDecoder />} />
         <Route path="/tools/timestamp-converter" element={<TimestampConverter />} />
         <Route path="/tools/image-converter" element={<ImageConverter />} />
+        <Route path="/tools/word-counter" element={<WordCounter />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
       </Routes>
     </BrowserRouter>
   )

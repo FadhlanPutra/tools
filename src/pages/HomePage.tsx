@@ -36,7 +36,7 @@ export default function HomePage() {
 
         <Link
           to="/tools"
-          style={{ background: 'var(--accent)', color: '#fff' }}
+          style={{ background: 'var(--accent)', color: 'white' }}
           className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-sm transition-opacity hover:opacity-90"
         >
           Lihat Semua Tools
@@ -105,10 +105,11 @@ export default function HomePage() {
           ].map((item) => (
             <div key={item.step} className="text-center">
               <div style={{ background: 'var(--bg-secondary)', color: 'var(--accent)' }} className="w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">{item.step}</div>
-              <h3 style={{ color: 'var(--text)' }} className="font-semibold mb-2">{item.title}</h3>
+              <h4 style={{ color: 'var(--text)' }} className="font-semibold mb-2">{item.title}</h4>
               <p style={{ color: 'var(--text-muted)' }} className="text-sm">{item.desc}</p>
             </div>
           ))}
+
         </div>
       </section>
 
@@ -167,7 +168,7 @@ export default function HomePage() {
         <p style={{ color: 'var(--text-muted)' }} className="mb-8">Jelajahi semua tool developer yang kami sediakan.</p>
         <Link
           to="/tools"
-          style={{ background: 'var(--accent)', color: '#fff' }}
+          style={{ background: 'var(--accent)', color: 'white' }}
           className="inline-flex items-center gap-2 px-8 py-3 rounded-xl font-medium text-sm transition-opacity hover:opacity-90"
         >
           Lihat Semua Tools
