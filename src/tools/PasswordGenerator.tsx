@@ -19,7 +19,7 @@ const CHARS = {
   symbols: '!@#$%^&*()-_=+[]{}|;:,.<>?',
 }
 
-function generatePassword(length: number, opts: Record<string, boolean>): string {
+export function generatePassword(length: number, opts: Record<string, boolean>): string {
   let pool = CHARS.lower
   if (opts.upper) pool += CHARS.upper
   if (opts.numbers) pool += CHARS.numbers

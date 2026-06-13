@@ -26,6 +26,11 @@ const SECTIONS: Section[] = [
   }
 ]
 
+export function formatJson(input: string, type: 'beautify' | 'minify'): string {
+  const parsed = JSON.parse(input)
+  return type === 'beautify' ? JSON.stringify(parsed, null, 2) : JSON.stringify(parsed)
+}
+
 export default function JsonFormatter() {
   const [input, setInput] = useState('')
   const [output, setOutput] = useState('')
@@ -33,8 +38,7 @@ export default function JsonFormatter() {
 
   function beautify() {
     try {
-      const parsed = JSON.parse(input)
-      setOutput(JSON.stringify(parsed, null, 2))
+      setOutput(formatJson(input, 'beautify'))
       setError('')
     } catch (e: any) {
       setError(e.message)
@@ -44,8 +48,7 @@ export default function JsonFormatter() {
 
   function minify() {
     try {
-      const parsed = JSON.parse(input)
-      setOutput(JSON.stringify(parsed))
+      setOutput(formatJson(input, 'minify'))
       setError('')
     } catch (e: any) {
       setError(e.message)

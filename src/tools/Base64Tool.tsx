@@ -9,6 +9,14 @@ const SECTIONS: Section[] = [
   { title: 'Keamanan', content: 'Base64 bukan enkripsi. Jangan menggunakannya untuk menyembunyikan data sensitif karena siapa saja dapat melakukan dekode dengan mudah.' }
 ]
 
+export function encodeBase64(str: string): string {
+  return btoa(unescape(encodeURIComponent(str)))
+}
+
+export function decodeBase64(str: string): string {
+  return decodeURIComponent(escape(atob(str.trim())))
+}
+
 export default function Base64Tool() {
   const [input, setInput] = useState('')
   const [mode, setMode] = useState<'encode' | 'decode'>('encode')
@@ -20,9 +28,9 @@ export default function Base64Tool() {
     if (!input.trim()) return setOutput('')
     try {
       if (mode === 'encode') {
-        setOutput(btoa(unescape(encodeURIComponent(input))))
+        setOutput(encodeBase64(input))
       } else {
-        setOutput(decodeURIComponent(escape(atob(input.trim()))))
+        setOutput(decodeBase64(input))
       }
     } catch {
       setError(mode === 'decode' ? 'Input bukan Base64 yang valid.' : 'Terdapat karakter yang tidak bisa di-encode.')

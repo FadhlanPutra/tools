@@ -16,19 +16,21 @@ const SECTIONS: Section[] = [
   { title: 'Cara Penggunaan', content: 'Cukup tempelkan teks Anda, pilih file, atau seret dan lepas file (.txt, .md, .csv, .docx, .pdf) ke area di atas untuk menghitung statistiknya secara instan.' }
 ]
 
+export function calculateStats(text: string) {
+  const trimmed = text.trim()
+  const words = trimmed ? trimmed.split(/\s+/).length : 0
+  const characters = text.length
+  const sentences = trimmed ? trimmed.split(/[.!?]+/).filter(s => s.trim().length > 0).length : 0
+  return { words, characters, sentences }
+}
+
 export default function WordCounter() {
   const [text, setText] = useState('')
   const [isDragging, setIsDragging] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const stats = useMemo(() => {
-    const trimmed = text.trim()
-    const words = trimmed ? trimmed.split(/\s+/).length : 0
-    const characters = text.length
-    const sentences = trimmed ? trimmed.split(/[.!?]+/).filter(s => s.trim().length > 0).length : 0
-    return { words, characters, sentences }
-  }, [text])
+  const stats = useMemo(() => calculateStats(text), [text])
 
   const handleFile = async (file: File) => {
     setError(null)

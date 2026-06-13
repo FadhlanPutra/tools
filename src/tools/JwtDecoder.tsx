@@ -12,14 +12,17 @@ const SECTIONS: Section[] = [
   ]}
 ]
 
-function decodeJWT(token: string) {
+export function decodeJWT(token: string) {
   const parts = token.trim().split('.')
   if (parts.length !== 3) throw new Error('JWT harus memiliki 3 bagian (header.payload.signature)')
 
   function decode(part: string) {
     const base64 = part.replace(/-/g, '+').replace(/_/g, '/')
     const padded = base64 + '=='.slice((base64.length + 3) % 4)
-    return JSON.parse(decodeURIComponent(escape(atob(padded))))
+    // return JSON.parse(decodeURIComponent(escape(atob(padded))))
+    return JSON.parse(new TextDecoder().decode(
+      Uint8Array.from(atob(padded), c => c.charCodeAt(0))
+    ))
   }
 
   return {

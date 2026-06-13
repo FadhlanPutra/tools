@@ -8,6 +8,19 @@ const SECTIONS: Section[] = [
   { title: 'Apa itu Unix Timestamp?', content: 'Unix timestamp adalah jumlah detik yang telah berlalu sejak 1 Januari 1970 (UTC).' }
 ]
 
+export function convertUnixToDate(ts: number) {
+  const d = new Date(ts * 1000)
+  return {
+    utc: d.toUTCString(),
+    local: d.toLocaleString(),
+    iso: d.toISOString()
+  }
+}
+
+export function convertDateToUnix(dateString: string) {
+  return Math.floor(new Date(dateString).getTime() / 1000)
+}
+
 export default function TimestampConverter() {
   const [tsInput, setTsInput] = useState('')
   const [dateInput, setDateInput] = useState('')
@@ -18,15 +31,13 @@ export default function TimestampConverter() {
   function convertTs() {
     const n = Number(tsInput)
     if (!tsInput || isNaN(n)) return setDateResult('Input tidak valid')
-    const d = new Date(n * 1000)
-    setDateResult(
-      `${d.toUTCString()}\n\nLocal: ${d.toLocaleString()}\nISO: ${d.toISOString()}`
-    )
+    const res = convertUnixToDate(n)
+    setDateResult(`${res.utc}\n\nLocal: ${res.local}\nISO: ${res.iso}`)
   }
 
   function convertDate() {
     if (!dateInput) return setTsResult('Pilih tanggal dulu')
-    const ts = Math.floor(new Date(dateInput).getTime() / 1000)
+    const ts = convertDateToUnix(dateInput)
     setTsResult(ts.toString())
   }
 

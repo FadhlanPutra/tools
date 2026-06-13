@@ -8,7 +8,7 @@ const SECTIONS: Section[] = [
   { title: 'Apa itu UUID?', content: 'UUID (Universally Unique Identifier) adalah label 128-bit yang digunakan untuk mengidentifikasi informasi dalam sistem komputer dengan keunikan yang sangat tinggi.' }
 ]
 
-function generateUUID(): string {
+export function generateUUID(): string {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
     const r = (Math.random() * 16) | 0
     const v = c === 'x' ? r : (r & 0x3) | 0x8
