@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Shield, Zap, Globe, ChevronDown, CheckCircle, Database } from 'lucide-react'
+import { ArrowRight, Shield, Zap, Globe, ChevronDown, Database } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { TOOLS } from '../lib/tools'
 
