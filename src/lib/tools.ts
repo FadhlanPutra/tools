@@ -22,7 +22,7 @@ export const TOOLS: Tool[] = [
   {
     id: 'json-formatter',
     name: 'JSON Formatter',
-    description: 'Beautify, minify, dan validasi JSON secara instan.',
+    description: 'Beautify, minify, and validate JSON instantly.',
     category: 'formatter',
     path: '/tools/json-formatter',
     icon: '{}',
@@ -31,7 +31,7 @@ export const TOOLS: Tool[] = [
   {
     id: 'uuid-generator',
     name: 'UUID Generator',
-    description: 'Generate UUID v4 secara instan dan copy ke clipboard.',
+    description: 'Generate UUID v4 instantly and copy to clipboard.',
     category: 'generator',
     path: '/tools/uuid-generator',
     icon: '🔑',
@@ -40,7 +40,7 @@ export const TOOLS: Tool[] = [
   {
     id: 'password-generator',
     name: 'Password Generator',
-    description: 'Buat password kuat dengan panjang dan karakter yang bisa dikustomisasi.',
+    description: 'Create strong passwords with customizable length and characters.',
     category: 'generator',
     path: '/tools/password-generator',
     icon: '🔒',
@@ -49,7 +49,7 @@ export const TOOLS: Tool[] = [
   {
     id: 'base64',
     name: 'Base64 Encoder / Decoder',
-    description: 'Encode dan decode teks ke format Base64.',
+    description: 'Encode and decode text to Base64 format.',
     category: 'encoder',
     path: '/tools/base64',
     icon: '🔣',
@@ -58,7 +58,7 @@ export const TOOLS: Tool[] = [
   {
     id: 'jwt-decoder',
     name: 'JWT Decoder',
-    description: 'Decode JWT token dan lihat header serta payload. Data tidak dikirim ke server.',
+    description: 'Decode JWT tokens and view headers and payloads. Data is not sent to any server.',
     category: 'encoder',
     path: '/tools/jwt-decoder',
     icon: '🪙',
@@ -67,7 +67,7 @@ export const TOOLS: Tool[] = [
   {
     id: 'timestamp-converter',
     name: 'Timestamp Converter',
-    description: 'Konversi Unix timestamp ke tanggal dan sebaliknya.',
+    description: 'Convert Unix timestamp to date and vice versa.',
     category: 'converter',
     path: '/tools/timestamp-converter',
     icon: '⏱️',
@@ -76,7 +76,7 @@ export const TOOLS: Tool[] = [
   {
     id: 'image-converter',
     name: 'Image Converter',
-    description: 'Ubah format gambar langsung di browser.',
+    description: 'Convert image formats directly in your browser.',
     category: 'converter',
     path: '/tools/image-converter',
     icon: '🖼️',
@@ -85,7 +85,7 @@ export const TOOLS: Tool[] = [
   {
     id: 'word-counter',
     name: 'Word Counter',
-    description: 'Hitung jumlah kata, karakter, dan kalimat secara instan.',
+    description: 'Calculate the number of words, characters, and sentences instantly.',
     category: 'utility',
     path: '/tools/word-counter',
     icon: '📝',

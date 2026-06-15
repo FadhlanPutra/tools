@@ -5,16 +5,16 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { TOOLS } from '../lib/tools'
 
 const FEATURES = [
-  { icon: Zap,    title: 'Instan',         desc: 'Semua tool berjalan langsung di browser, tanpa loading.' },
-  { icon: Shield, title: 'Privat',          desc: 'Data kamu tidak pernah dikirim ke server manapun.' },
-  { icon: Globe,  title: '100% Gratis',     desc: 'Tidak perlu daftar, tidak perlu bayar, selamanya.' },
+  { icon: Zap,    title: 'Instant',         desc: 'All tools run directly in your browser, no loading.' },
+  { icon: Shield, title: 'Private',         desc: 'Your data is never sent to any server.' },
+  { icon: Globe,  title: '100% Free',       desc: 'No registration, no payment, forever.' },
 ]
 
 const FAQ_ITEMS = [
-  { q: 'Apakah data saya aman?', a: 'Ya. Semua proses berjalan di browser Anda. Tidak ada data yang dikirim ke server kami.' },
-  { q: 'Apakah ini benar-benar gratis?', a: 'Ya, 100% gratis tanpa biaya tersembunyi.' },
-  { q: 'Bagaimana cara kerjanya?', a: 'Kami menggunakan teknologi web modern untuk menjalankan logika pemrosesan secara lokal di perangkat Anda.' },
-  { q: 'Apakah saya perlu login?', a: 'Tidak. Semua tool bisa langsung digunakan tanpa pendaftaran.' },
+  { q: 'Is my data safe?', a: 'Yes. All processing happens in your browser. No data is sent to our servers.' },
+  { q: 'Is this really free?', a: 'Yes, 100% free with no hidden charges.' },
+  { q: 'How does it work?', a: 'We use modern web technology to run processing logic locally on your device.' },
+  { q: 'Do I need to sign in?', a: 'No. All tools can be used immediately without registration.' },
 ]
 
 export default function HomePage() {
@@ -25,13 +25,13 @@ export default function HomePage() {
       {/* Hero */}
       <section className="text-center py-24">
         <h1 style={{ color: 'var(--text)' }} className="text-5xl font-bold leading-tight mb-5">
-          Developer tools,<br />
-          <span style={{ color: 'var(--accent)' }}>langsung jalan.</span>
+          Online tools,<br />
+          <span style={{ color: 'var(--accent)' }}>ready to use.</span>
         </h1>
 
         <p style={{ color: 'var(--text-muted)' }} className="text-base max-w-md mx-auto mb-10 leading-relaxed">
-          Kumpulan tools gratis untuk developer, mahasiswa IT, dan pengguna teknologi.
-          Semua berjalan di browser — data tidak pernah meninggalkan perangkat kamu.
+          A collection of free tools for everyone. 
+          Everything runs in your browser — your data never leaves your device.
         </p>
 
         <Link
@@ -39,7 +39,7 @@ export default function HomePage() {
           style={{ background: 'var(--accent)', color: 'white' }}
           className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-sm transition-opacity hover:opacity-90"
         >
-          Lihat Semua Tools
+          See All Tools
           <ArrowRight size={15} />
         </Link>
       </section>
@@ -67,7 +67,7 @@ export default function HomePage() {
       {/* Tool preview */}
       <section className="pb-24">
         <p style={{ color: 'var(--text-muted)' }} className="text-xs text-center mb-6 uppercase tracking-widest">
-          Tools populer
+          Popular Tools
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
           {TOOLS.slice(0, 6).map((tool) => (
@@ -88,7 +88,7 @@ export default function HomePage() {
             style={{ color: 'var(--text-muted)', border: '1px solid var(--border)' }}
             className="inline-flex items-center gap-2 text-sm px-5 py-2.5 rounded-xl hover:opacity-80 transition-opacity"
           >
-            Lihat semua {TOOLS.length} tools
+            View all {TOOLS.length} tools
             <ArrowRight size={13} />
           </Link>
         </div>
@@ -99,9 +99,9 @@ export default function HomePage() {
         <h2 style={{ color: 'var(--text)' }} className="text-2xl font-bold text-center mb-12">How it works</h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
           {[
-            { step: '1', title: 'Pilih tool', desc: 'Cari alat yang kamu butuhkan.' },
-            { step: '2', title: 'Masukkan input', desc: 'Tempel teks atau upload file.' },
-            { step: '3', title: 'Dapatkan hasil', desc: 'Copy hasil secara instan.' },
+            { step: '1', title: 'Choose tool', desc: 'Find the tool you need.' },
+            { step: '2', title: 'Enter input', desc: 'Paste text or upload file.' },
+            { step: '3', title: 'Get result', desc: 'Copy results instantly.' },
           ].map((item) => (
             <div key={item.step} className="text-center">
               <div style={{ background: 'var(--bg-secondary)', color: 'var(--accent)' }} className="w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">{item.step}</div>
@@ -117,9 +117,9 @@ export default function HomePage() {
       <section style={{ background: 'var(--bg-secondary)' }} className="py-16 rounded-2xl mb-24">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center px-4">
           {[
-            { label: 'Tools tersedia', value: TOOLS.length, icon: Database },
+            { label: 'Tools available', value: TOOLS.length, icon: Database },
             { label: 'Browser-based', value: '100%', icon: Globe },
-            { label: 'Data ke server', value: '0', icon: Shield },
+            { label: 'Data to server', value: '0', icon: Shield },
           ].map((stat) => (
             <div key={stat.label}>
               <stat.icon className="mx-auto mb-2 text-[var(--accent)]" size={24} />
@@ -164,21 +164,21 @@ export default function HomePage() {
 
       {/* CTA bottom */}
       <section className="text-center pb-24">
-        <h2 style={{ color: 'var(--text)' }} className="text-3xl font-bold mb-4">Siap untuk mulai?</h2>
-        <p style={{ color: 'var(--text-muted)' }} className="mb-8">Jelajahi semua tool developer yang kami sediakan.</p>
+        <h2 style={{ color: 'var(--text)' }} className="text-3xl font-bold mb-4">Ready to get started?</h2>
+        <p style={{ color: 'var(--text-muted)' }} className="mb-8">Explore all the useful tools we provide.</p>
         <Link
           to="/tools"
           style={{ background: 'var(--accent)', color: 'white' }}
           className="inline-flex items-center gap-2 px-8 py-3 rounded-xl font-medium text-sm transition-opacity hover:opacity-90"
         >
-          Lihat Semua Tools
+          See All Tools
           <ArrowRight size={15} />
         </Link>
       </section>
 
       {/* Footer */}
       <footer className="border-t border-[var(--border)] py-8 text-center text-xs" style={{ color: 'var(--text-muted)' }}>
-        <p>&copy; {new Date().getFullYear()} Tools. Dev-friendly utilities.</p>
+        <p>&copy; {new Date().getFullYear()} Tools. Simple utilities for everyone.</p>
       </footer>
     </main>
   )

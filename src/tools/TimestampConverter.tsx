@@ -5,7 +5,7 @@ import CopyButton from '../components/CopyButton'
 import ToolInfo, { type Section } from '../components/ToolInfo'
 
 const SECTIONS: Section[] = [
-  { title: 'Apa itu Unix Timestamp?', content: 'Unix timestamp adalah jumlah detik yang telah berlalu sejak 1 Januari 1970 (UTC).' }
+  { title: 'What is Unix Timestamp?', content: 'Unix timestamp is the number of seconds that have elapsed since January 1, 1970 (UTC).' }
 ]
 
 export function convertUnixToDate(ts: number) {
@@ -30,13 +30,13 @@ export default function TimestampConverter() {
 
   function convertTs() {
     const n = Number(tsInput)
-    if (!tsInput || isNaN(n)) return setDateResult('Input tidak valid')
+    if (!tsInput || isNaN(n)) return setDateResult('Invalid input')
     const res = convertUnixToDate(n)
     setDateResult(`${res.utc}\n\nLocal: ${res.local}\nISO: ${res.iso}`)
   }
 
   function convertDate() {
-    if (!dateInput) return setTsResult('Pilih tanggal dulu')
+    if (!dateInput) return setTsResult('Select a date first')
     const ts = convertDateToUnix(dateInput)
     setTsResult(ts.toString())
   }
@@ -45,11 +45,11 @@ export default function TimestampConverter() {
     <>
       <Helmet>
         <title>Timestamp Converter | build.my.id</title>
-        <meta name="description" content="Konversi Unix timestamp ke tanggal atau sebaliknya." />
+        <meta name="description" content="Convert Unix timestamp to date and vice versa." />
       </Helmet>
       <ToolLayout
         title="Timestamp Converter"
-        description="Konversi Unix timestamp ke tanggal atau sebaliknya."
+        description="Convert Unix timestamp to date and vice versa."
       >
       <div className="space-y-8">
         {/* Current time */}
@@ -58,7 +58,7 @@ export default function TimestampConverter() {
           className="rounded-xl p-4 flex items-center justify-between"
         >
           <div>
-            <p style={{ color: 'var(--text-muted)' }} className="text-xs mb-1">Unix timestamp sekarang</p>
+            <p style={{ color: 'var(--text-muted)' }} className="text-xs mb-1">Current Unix timestamp</p>
             <code style={{ color: 'var(--text)' }} className="text-lg font-mono font-bold">{now}</code>
           </div>
           <CopyButton text={now.toString()} />
@@ -67,7 +67,7 @@ export default function TimestampConverter() {
         {/* Timestamp → Date */}
         <div className="space-y-3">
           <h3 style={{ color: 'var(--text)' }} className="text-sm font-semibold">
-            Unix Timestamp → Tanggal
+            Unix Timestamp → Date
           </h3>
           <div className="flex gap-2">
             <input
@@ -107,7 +107,7 @@ export default function TimestampConverter() {
         {/* Date → Timestamp */}
         <div className="space-y-3">
           <h3 style={{ color: 'var(--text)' }} className="text-sm font-semibold">
-            Tanggal → Unix Timestamp
+            Date → Unix Timestamp
           </h3>
           <div className="flex gap-2">
             <input

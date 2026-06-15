@@ -5,7 +5,7 @@ import CopyButton from '../components/CopyButton'
 import ToolInfo, { type Section } from '../components/ToolInfo'
 
 const SECTIONS: Section[] = [
-  { title: 'Apa itu UUID?', content: 'UUID (Universally Unique Identifier) adalah label 128-bit yang digunakan untuk mengidentifikasi informasi dalam sistem komputer dengan keunikan yang sangat tinggi.' }
+  { title: 'What is UUID?', content: 'UUID (Universally Unique Identifier) is a 128-bit label used to identify information in computer systems with very high uniqueness.' }
 ]
 
 export function generateUUID(): string {
@@ -28,18 +28,18 @@ export default function UuidGenerator() {
     <>
       <Helmet>
         <title>UUID Generator | build.my.id</title>
-        <meta name="description" content="Generate UUID v4 secara instan. Aman — semua dibuat di browser kamu." />
+        <meta name="description" content="Generate UUID v4 instantly. Safe — everything is created in your browser." />
       </Helmet>
       <ToolLayout
         title="UUID Generator"
-        description="Generate UUID v4 secara instan. Aman — semua dibuat di browser kamu."
+        description="Generate UUID v4 instantly. Safe — everything is created in your browser."
       >
       <div className="space-y-4">
         <div className="flex items-center gap-3">
-          <div>
-            <label style={{ color: 'var(--text-muted)' }} className="text-xs block mb-1">
-              Jumlah
-            </label>
+            <div>
+              <label style={{ color: 'var(--text-muted)' }} className="text-xs block mb-1">
+                Quantity
+              </label>
             <input
               type="number"
               min={1}

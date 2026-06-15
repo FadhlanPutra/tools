@@ -6,22 +6,22 @@ import ToolInfo, { type Section } from '../components/ToolInfo'
 
 const SECTIONS: Section[] = [
   {
-    title: 'Apa itu JSON?',
-    content: 'JSON (JavaScript Object Notation) adalah format pertukaran data yang ringan dan mudah dibaca serta ditulis oleh manusia, serta mudah diproses dan dihasilkan oleh mesin.'
+    title: 'What is JSON?',
+    content: 'JSON (JavaScript Object Notation) is a lightweight data-interchange format that is easy for humans to read and write, and easy for machines to parse and generate.'
   },
   {
     title: 'Beautify vs Minify',
     content: [
-      'Beautify: Menambahkan indentasi dan spasi agar JSON mudah dibaca oleh manusia.',
-      'Minify: Menghapus spasi, baris baru, dan indentasi untuk mengurangi ukuran file JSON, biasanya digunakan untuk pengiriman data antar server.'
+      'Beautify: Adds indentation and spaces to make JSON easy for humans to read.',
+      'Minify: Removes spaces, newlines, and indentation to reduce JSON file size, typically used for transmitting data between servers.'
     ]
   },
   {
-    title: 'Tips Validasi',
+    title: 'Validation Tips',
     content: [
-      'Pastikan semua kunci (key) dibungkus dengan tanda kutip ganda (").',
-      'Hindari penggunaan koma di akhir item terakhir dalam objek atau array.',
-      'Periksa apakah tanda kurung kurawal {} atau siku [] sudah tertutup dengan benar.'
+      'Ensure all keys are wrapped in double quotes (").',
+      'Avoid trailing commas after the last item in an object or array.',
+      'Check if curly braces {} or square brackets [] are properly closed.'
     ]
   }
 ]
@@ -60,11 +60,11 @@ export default function JsonFormatter() {
     <>
       <Helmet>
         <title>JSON Formatter | build.my.id</title>
-        <meta name="description" content="Beautify, minify, dan validasi JSON secara instan. Data tidak dikirim ke server." />
+        <meta name="description" content="Beautify, minify, and validate JSON instantly. Data is not sent to any server." />
       </Helmet>
       <ToolLayout
         title="JSON Formatter"
-        description="Beautify, minify, dan validasi JSON secara instan. Data tidak dikirim ke server."
+        description="Beautify, minify, and validate JSON instantly. Data is not sent to any server."
       >
       <div className="space-y-4">
         <div>

@@ -18,6 +18,6 @@ describe('ImageConverter', () => {
     expect(screen.getByText(/Image Converter/i)).toBeDefined();
     
     // Check if the drop zone text is rendered
-    expect(screen.getByText(/Drag & drop gambar atau klik untuk pilih/i)).toBeDefined();
+    expect(screen.getByText(/Drag & drop images or click to select/i)).toBeDefined();
   });
 });

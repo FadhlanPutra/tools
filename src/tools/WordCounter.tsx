@@ -12,8 +12,8 @@ import pdfWorker from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
 pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorker
 
 const SECTIONS: Section[] = [
-  { title: 'Apa itu Word Counter?', content: 'Word Counter adalah alat sederhana untuk menghitung jumlah kata, karakter, dan kalimat dalam teks, dokumen (.docx), atau PDF Anda secara real-time.' },
-  { title: 'Cara Penggunaan', content: 'Cukup tempelkan teks Anda, pilih file, atau seret dan lepas file (.txt, .md, .csv, .docx, .pdf) ke area di atas untuk menghitung statistiknya secara instan.' }
+  { title: 'What is Word Counter?', content: 'Word Counter is a simple tool to count the number of words, characters, and sentences in your text, document (.docx), or PDF in real-time.' },
+  { title: 'How to use', content: 'Simply paste your text, select a file, or drag and drop a file (.txt, .md, .csv, .docx, .pdf) into the area above to calculate its statistics instantly.' }
 ]
 
 export function calculateStats(text: string) {
@@ -56,11 +56,11 @@ export default function WordCounter() {
         reader.onload = (e) => setText(e.target?.result as string)
         reader.readAsText(file)
       } else {
-        throw new Error('Format file tidak didukung.')
+        throw new Error('File format not supported.')
       }
     } catch (err) {
       console.error(err)
-      setError('Gagal memproses file. Pastikan format valid.')
+      setError('Failed to process file. Ensure the format is valid.')
     }
   }
 
@@ -80,11 +80,11 @@ export default function WordCounter() {
     <>
       <Helmet>
         <title>Word Counter | build.my.id</title>
-        <meta name="description" content="Hitung jumlah kata, karakter, dan kalimat dari teks atau file (.txt, .md, .csv, .docx, .pdf) secara instan." />
+        <meta name="description" content="Count the number of words, characters, and sentences from text or files (.txt, .md, .csv, .docx, .pdf) instantly." />
       </Helmet>
       <ToolLayout
         title="Word Counter"
-        description="Hitung jumlah kata, karakter, dan kalimat dari teks atau file (.txt, .md, .csv, .docx, .pdf) secara instan."
+        description="Count the number of words, characters, and sentences from text or files (.txt, .md, .csv, .docx, .pdf) instantly."
       >
         <div className="space-y-4">
           {error && <div style={{ color: '#ef4444' }} className="text-sm p-2 bg-red-100 rounded">{error}</div>}
@@ -103,7 +103,7 @@ export default function WordCounter() {
             className="rounded-xl p-8 text-center"
           >
             <p style={{ color: 'var(--text-muted)' }}>
-              Tarik file (.txt, .md, .csv, .docx, .pdf) ke sini, atau klik untuk memilih
+              Drag a file (.txt, .md, .csv, .docx, .pdf) here, or click to select
             </p>
             <input
               type="file"
@@ -117,7 +117,7 @@ export default function WordCounter() {
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
-            placeholder="Masukkan atau tempel teks Anda di sini..."
+            placeholder="Enter or paste your text here..."
             rows={10}
             style={{
               background: 'var(--bg-secondary)',
@@ -131,15 +131,15 @@ export default function WordCounter() {
 
           <div className="grid grid-cols-3 gap-4">
             <div style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border)' }} className="p-4 rounded-xl text-center">
-              <div style={{ color: 'var(--text-muted)' }} className="text-xs uppercase mb-1">Kata</div>
+              <div style={{ color: 'var(--text-muted)' }} className="text-xs uppercase mb-1">Words</div>
               <div className="text-2xl font-bold">{stats.words}</div>
             </div>
             <div style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border)' }} className="p-4 rounded-xl text-center">
-              <div style={{ color: 'var(--text-muted)' }} className="text-xs uppercase mb-1">Karakter</div>
+              <div style={{ color: 'var(--text-muted)' }} className="text-xs uppercase mb-1">Characters</div>
               <div className="text-2xl font-bold">{stats.characters}</div>
             </div>
             <div style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border)' }} className="p-4 rounded-xl text-center">
-              <div style={{ color: 'var(--text-muted)' }} className="text-xs uppercase mb-1">Kalimat</div>
+              <div style={{ color: 'var(--text-muted)' }} className="text-xs uppercase mb-1">Sentences</div>
               <div className="text-2xl font-bold">{stats.sentences}</div>
             </div>
           </div>

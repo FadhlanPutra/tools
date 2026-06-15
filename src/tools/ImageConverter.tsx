@@ -7,8 +7,8 @@ import ToolLayout from '../components/ToolLayout'
 import ToolInfo, { type Section } from '../components/ToolInfo'
 
 const SECTIONS: Section[] = [
-  { title: 'Bagaimana cara kerjanya?', content: 'Tool ini memproses gambar secara lokal langsung di browser Anda menggunakan Canvas API.' },
-  { title: 'Privasi', content: 'Semua pemrosesan dilakukan di perangkat Anda sendiri. Data gambar tidak pernah diunggah ke server.' }
+  { title: 'How does it work?', content: 'This tool processes images locally directly in your browser using the Canvas API.' },
+  { title: 'Privacy', content: 'All processing is done on your own device. Image data is never uploaded to a server.' }
 ]
 
 interface ImageFile {
@@ -78,11 +78,11 @@ export default function ImageConverter() {
     <>
       <Helmet>
         <title>Image Converter | build.my.id</title>
-        <meta name="description" content="Ubah format banyak gambar sekaligus langsung di browser." />
+        <meta name="description" content="Convert multiple images format instantly directly in your browser." />
       </Helmet>
       <ToolLayout
         title="Image Converter"
-        description="Ubah format banyak gambar sekaligus langsung di browser."
+        description="Convert multiple images format instantly directly in your browser."
       >
       <div className="space-y-4">
         <div
@@ -96,7 +96,7 @@ export default function ImageConverter() {
           className="w-full h-48 rounded-2xl flex flex-col items-center justify-center cursor-pointer transition-all bg-[var(--bg-secondary)]"
         >
           <p style={{ color: 'var(--text-muted)' }} className="text-sm">
-            Drag & drop gambar atau klik untuk pilih
+            Drag & drop images or click to select
           </p>
           <input 
             type="file" 
@@ -117,7 +117,7 @@ export default function ImageConverter() {
             </div>
 
             <div>
-              <label className="text-xs block mb-1">Format Target</label>
+              <label className="text-xs block mb-1">Target Format</label>
               <select 
                 value={format} 
                 onChange={(e) => setFormat(e.target.value)}
@@ -133,13 +133,13 @@ export default function ImageConverter() {
               onClick={convertAndDownload}
               className="w-full bg-[var(--accent)] text-white py-2 rounded-lg"
             >
-              Konversi & Download (ZIP)
+              Convert & Download (ZIP)
             </button>
             <button 
               onClick={() => setImages([])}
               className="w-full bg-red-500 text-white py-2 rounded-lg"
             >
-              Hapus Semua
+              Clear All
             </button>
           </div>
         )}

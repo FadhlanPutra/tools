@@ -5,16 +5,16 @@ import CopyButton from '../components/CopyButton'
 import ToolInfo, { type Section } from '../components/ToolInfo'
 
 const SECTIONS: Section[] = [
-  { title: 'Apa itu JWT?', content: 'JSON Web Token (JWT) adalah standar terbuka untuk membuat token akses yang aman di antara dua pihak.' },
-  { title: 'Keamanan', content: [
-    'JWT yang didekode di sini hanya menampilkan data yang sudah dipublikasikan.',
-    'Jangan menyimpan data sensitif di dalam payload JWT karena siapa saja bisa membacanya tanpa secret key.'
+  { title: 'What is JWT?', content: 'JSON Web Token (JWT) is an open standard for creating secure access tokens between two parties.' },
+  { title: 'Security', content: [
+    'The JWT decoded here only shows publicly available data.',
+    'Do not store sensitive data in the JWT payload because anyone can read it without a secret key.'
   ]}
 ]
 
 export function decodeJWT(token: string) {
   const parts = token.trim().split('.')
-  if (parts.length !== 3) throw new Error('JWT harus memiliki 3 bagian (header.payload.signature)')
+  if (parts.length !== 3) throw new Error('JWT must have 3 parts (header.payload.signature)')
 
   function decode(part: string) {
     const base64 = part.replace(/-/g, '+').replace(/_/g, '/')
@@ -51,11 +51,11 @@ export default function JwtDecoder() {
     <>
       <Helmet>
         <title>JWT Decoder | build.my.id</title>
-        <meta name="description" content="Decode JWT token dan lihat header serta payload. Data tidak dikirim ke server — semuanya lokal." />
+        <meta name="description" content="Decode JWT tokens and view headers and payloads. Data is not sent to any server — everything is local." />
       </Helmet>
       <ToolLayout
         title="JWT Decoder"
-        description="Decode JWT token dan lihat header serta payload. Data tidak dikirim ke server — semuanya lokal."
+        description="Decode JWT tokens and view headers and payloads. Data is not sent to any server — everything is local."
       >
       <div className="space-y-4">
         <div>
@@ -107,7 +107,7 @@ export default function JwtDecoder() {
             ))}
             <div>
               <label style={{ color: 'var(--text-muted)' }} className="text-xs block mb-2">
-                Signature <span className="text-yellow-500">(tidak bisa diverifikasi tanpa secret key)</span>
+                Signature <span className="text-yellow-500">(cannot be verified without a secret key)</span>
               </label>
               <code
                 style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border)', color: 'var(--text)' }}

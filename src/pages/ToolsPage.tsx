@@ -51,7 +51,7 @@ function SearchModal({ onClose }: { onClose: () => void }) {
           <input
             autoFocus
             type="text"
-            placeholder="Cari tool..."
+            placeholder="Search tools..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             style={{ background: 'transparent', color: 'var(--text)', outline: 'none', flex: 1 }}
@@ -69,11 +69,11 @@ function SearchModal({ onClose }: { onClose: () => void }) {
         <div className="max-h-80 overflow-y-auto">
           {query.trim() === '' ? (
             <p style={{ color: 'var(--text-muted)' }} className="text-xs text-center py-8">
-              Ketik untuk mencari tool...
+              Type to search for a tool...
             </p>
           ) : results.length === 0 ? (
             <p style={{ color: 'var(--text-muted)' }} className="text-xs text-center py-8">
-              Tidak ada hasil untuk "{query}"
+              No results for "{query}"
             </p>
           ) : (
             results.map((tool) => (
@@ -291,7 +291,7 @@ export default function ToolsPage() {
             className="flex items-center gap-2 flex-1 max-w-sm text-sm px-4 py-2.5 rounded-xl text-left hover:border-blue-500/50 transition-colors"
           >
             <Search size={14} />
-            <span className="flex-1">Cari tool...</span>
+            <span className="flex-1">Search tools...</span>
             <kbd
               style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}
               className="text-xs px-1.5 py-0.5 rounded hidden sm:block"
@@ -306,7 +306,7 @@ export default function ToolsPage() {
           {active === 'all' ? 'All Tools' : CATEGORIES[active as Category].label}
         </h1>
         <p style={{ color: 'var(--text-muted)' }} className="text-sm mb-6">
-          {filtered.length} tools tersedia
+          {filtered.length} tools available
         </p>
 
         {/* Grid */}

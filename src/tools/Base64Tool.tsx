@@ -5,8 +5,8 @@ import CopyButton from '../components/CopyButton'
 import ToolInfo, { type Section } from '../components/ToolInfo'
 
 const SECTIONS: Section[] = [
-  { title: 'Apa itu Base64?', content: 'Base64 adalah metode untuk mengubah data biner ke format teks ASCII agar data dapat dikirim dengan aman melalui media yang hanya mendukung teks.' },
-  { title: 'Keamanan', content: 'Base64 bukan enkripsi. Jangan menggunakannya untuk menyembunyikan data sensitif karena siapa saja dapat melakukan dekode dengan mudah.' }
+  { title: 'What is Base64?', content: 'Base64 is a method to convert binary data to ASCII text format so that data can be safely transmitted over media that only supports text.' },
+  { title: 'Security', content: 'Base64 is not encryption. Do not use it to hide sensitive data because anyone can decode it easily.' }
 ]
 
 export function encodeBase64(str: string): string {
@@ -33,7 +33,7 @@ export default function Base64Tool() {
         setOutput(decodeBase64(input))
       }
     } catch {
-      setError(mode === 'decode' ? 'Input bukan Base64 yang valid.' : 'Terdapat karakter yang tidak bisa di-encode.')
+      setError(mode === 'decode' ? 'Input is not a valid Base64 string.' : 'Contains characters that cannot be encoded.')
       setOutput('')
     }
   }
@@ -42,11 +42,11 @@ export default function Base64Tool() {
     <>
       <Helmet>
         <title>Base64 Encoder / Decoder | build.my.id</title>
-        <meta name="description" content="Encode teks ke Base64 atau decode Base64 kembali ke teks. Berjalan di browser." />
+        <meta name="description" content="Encode text to Base64 or decode Base64 back to text. Runs in the browser." />
       </Helmet>
       <ToolLayout
         title="Base64 Encoder / Decoder"
-        description="Encode teks ke Base64 atau decode Base64 kembali ke teks. Berjalan di browser."
+        description="Encode text to Base64 or decode Base64 back to text. Runs in the browser."
       >
       <div className="space-y-4">
         {/* Mode toggle */}
@@ -71,7 +71,7 @@ export default function Base64Tool() {
 
         <div>
           <label style={{ color: 'var(--text-muted)' }} className="text-xs block mb-2">
-            {mode === 'encode' ? 'Teks asli' : 'Base64 string'}
+            {mode === 'encode' ? 'Original text' : 'Base64 string'}
           </label>
           <textarea
             value={input}

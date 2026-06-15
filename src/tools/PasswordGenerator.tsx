@@ -5,10 +5,10 @@ import CopyButton from '../components/CopyButton'
 import ToolInfo, { type Section } from '../components/ToolInfo'
 
 const SECTIONS: Section[] = [
-  { title: 'Tips Keamanan', content: [
-    'Gunakan panjang minimal 12 karakter.',
-    'Kombinasikan huruf besar, huruf kecil, angka, dan simbol.',
-    'Jangan gunakan password yang sama untuk layanan yang berbeda.'
+  { title: 'Security Tips', content: [
+    'Use a length of at least 12 characters.',
+    'Combine uppercase letters, lowercase letters, numbers, and symbols.',
+    'Do not use the same password for different services.'
   ]}
 ]
 
@@ -46,11 +46,11 @@ export default function PasswordGenerator() {
     <>
       <Helmet>
         <title>Password Generator | build.my.id</title>
-        <meta name="description" content="Buat password acak yang kuat. Semua diproses di browser — tidak ada yang disimpan." />
+        <meta name="description" content="Create a strong, random password. Everything is processed in the browser — nothing is stored." />
       </Helmet>
       <ToolLayout
         title="Password Generator"
-        description="Buat password acak yang kuat. Semua diproses di browser — tidak ada yang disimpan."
+        description="Create a strong, random password. Everything is processed in the browser — nothing is stored."
       >
       <div className="space-y-5">
         {/* Password output */}
@@ -83,7 +83,7 @@ export default function PasswordGenerator() {
         {/* Length slider */}
         <div>
           <label style={{ color: 'var(--text-muted)' }} className="text-xs block mb-2">
-            Panjang: <span style={{ color: 'var(--text)' }} className="font-medium">{length}</span>
+            Length: <span style={{ color: 'var(--text)' }} className="font-medium">{length}</span>
           </label>
           <input
             type="range"

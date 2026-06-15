@@ -1,6 +1,6 @@
 # build.my.id
 
-Developer tools online gratis — React + TypeScript + Vite + Tailwind CSS
+Tools online gratis — React + TypeScript + Vite + Tailwind CSS
 
 ## Development
 

@@ -37,6 +37,6 @@
 body {
   background-color: var(--bg);
   color: var(--text);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Inter Variable', system-ui, sans-serif;
   transition: background-color 0.2s, color 0.2s;
 }
